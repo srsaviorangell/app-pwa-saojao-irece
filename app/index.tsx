@@ -1,10 +1,16 @@
+import React from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import  NavTop  from '../src/components/NavTop'
 
-import { Text, View } from 'react-native';
 
-export default function Index() {
+export default function Inicio() {
   return (
-    <View className=" flex-1 items-center justify-center bg-red-600">
-      <Text className="">Ho111me</Text>
+    <View style={{flex : 1}}>
+      <NavTop />
+      <ScrollView style={{ flex: 1 }} className=""
+        contentContainerClassName="flex-1 items-center justify-center ">
+        <Text>map   </Text>
+      </ScrollView>
     </View>
-  );
+  )
 }
