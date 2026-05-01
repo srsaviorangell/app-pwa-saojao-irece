@@ -15,9 +15,10 @@ export default function Layout() {
   return (
     <SafeAreaProvider style={{ flex: 1 }} className="bg-[#FFEDD480]">
       <StatusBar style="dark" />
+      
       <View style={{ flex: 1 }}>
           <Slot />
-        </View>
+      </View>
       <NavBottom active={active} setActive={setActive}/>
     </SafeAreaProvider>
   );
