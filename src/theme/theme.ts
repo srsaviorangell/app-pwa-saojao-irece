@@ -36,22 +36,23 @@ export type Theme ={
         border:string;
     }
     cards:{
-        zeBigode:string[];
-        palcoPrincipal:string[];
+        zeBigode:string;
+        zeBigode2:String;
+        palcoPrincipal:string;
         show:{
             strong:string;
             mustard:string;
             soft:string;
             primary:string;
-            gradiente:string[];            
+            gradiente:string;            
         }
     }
 
     }
 }
-export const lighTheme: Theme ={
+export const lightTheme : Theme ={
     colors:{
-        background:{
+        background:{ 
             primary:"#FFEDD4",
             primarySoft:"#FFEDD4CC",
             secondary:"#EDEAE6",
@@ -64,17 +65,18 @@ export const lighTheme: Theme ={
     },
     details:{
         higlight:"#FFD6A5",
-        border:"#E0A96D"
+        border:"#F54900"
     },
     cards:{
-        zeBigode:["#F54900","#E7000B"],
-        palcoPrincipal:["#Ff6900","#f54900"],
+        zeBigode:"#F54900",
+        zeBigode2:"#b46d3b",
+        palcoPrincipal:"#Ff6900",
         show:{
             strong:"#DC2F02",
             mustard:"#f58d05",
             soft:"#F48C06",
             primary:"#E85D04",
-            gradiente:["#FAA307","#FFBA08"]
+            gradiente:"#FAA307"
 
         }
 
@@ -99,17 +101,18 @@ export const darkTheme: Theme ={
     },
     details:{
         higlight:"#FFB703",
-        border:"#FB8500"
+        border:"#F54900"
     },
     cards:{
-        zeBigode:["#F54900","#E7000B"],
-        palcoPrincipal:["#Ff6900","#f54900"],
+        zeBigode:"#F54900",
+        zeBigode2:"#b46d3b",
+        palcoPrincipal:"#Ff6900",
         show:{
             strong:"#DC2F02",
             mustard:"#f58d05",
             soft:"#F48C06",
             primary:"#E85D04",
-            gradiente:["#FAA307","#FFBA08"]
+            gradiente:"#FAA307"
 
         }
     }

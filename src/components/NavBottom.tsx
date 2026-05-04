@@ -2,16 +2,23 @@ import { View, Text, TouchableOpacity  } from 'react-native';
 import React from 'react';
 import { HomerIcon, ProgramacaoIcon, MapIcon, FavoritoIcon } from './Icons';
 import { Link } from 'expo-router'
+import { ThemeContext } from "../theme/ThemeContext";
+import { useContext } from "react";
+
+
 
 export default function NavBottom({ active, setActive }) {
+  //declaramos e pegamos o tema 
+    const { theme } = useContext(ThemeContext);
 
     const getIconColor = (tabName) => {
+
     return active === tabName ? "#E85D04" : "#6B7280"; // laranja ou cinza
   }
 
     
   return (
-    <View className="flex flex-row justify-around  items-center h-[5.5rem]  mx-auto w-full bg-white border-t-4 border-[#E85D04]">
+    <View style={{ backgroundColor: theme.colors.background.secondary, borderTopColor: theme.colors.details.border,  borderTopWidth: 4 }} className="flex flex-row justify-around  items-center h-[5.5rem]  mx-auto w-full ">
 
 {/* Inicio */}
 
