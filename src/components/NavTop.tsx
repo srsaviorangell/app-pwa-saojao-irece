@@ -35,7 +35,7 @@ export default function NavTop() {
             elevation: 10,
         }}>
           <View className="absolute left-0 right-0 items-center bottom-[-7.5rem]"> 
-            <Image source={require("../../assets/images/logosobra1.png")}
+            <Image source={require("../../assets/images/logosobra11.png")}
             className=" w-[8rem] h-[16rem]  " />
           </View>
           
