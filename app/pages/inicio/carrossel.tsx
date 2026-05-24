@@ -1,8 +1,7 @@
-import { View, FlatList, Image } from 'react-native'
-import type { FlatList as FlatListType } from 'react-native'
-import React, { useEffect, useRef, useState, useContext } from 'react'
-import { ViewToken } from 'react-native'
-import { requisicaoCarrossel } from "../../../src/requisicao/requisicaoCarrossel"
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { FlatList, Image, TouchableOpacity, View, ViewToken } from 'react-native';
+import { SetaDireita, SetaEsquerda } from '../../../src/components/Icons';
+import { requisicaoCarrossel } from "../../../src/requisicao/requisicaoCarrossel";
 import { ThemeContext } from '../../../src/theme/ThemeContext';
 
 
@@ -36,31 +35,58 @@ export default function Carrossel() {
         carregarEventos()
     }, [])
 
+    const nextSlide = useCallback(()=>{
+        if (data.length === 0) return
+        const nextIndex = (indexAtual + 1) % data.length
+        
+        flatListRef.current?.scrollToIndex({
+            index: nextIndex,
+            animated: true,
+        })
+
+        setIndexAtual(nextIndex)
+    },[indexAtual, data])
+
+    const prevSlide = useCallback(()=>{
+        if (data.length === 0) return
+
+        const prevIndex = // pega o index ou o tamnaho e diminiu 
+        
+        indexAtual === 0
+        ? data.length - 1
+        : indexAtual - 1 
+
+        flatListRef.current?.scrollToIndex({
+            index: prevIndex,
+            animated: true,
+        })
+        
+        setIndexAtual(prevIndex)
+    },[indexAtual, data])
+
+
+
     useEffect(()=>{
         if( data.length === 0 ) return 
 
         const interval = setInterval(()=>{
             const nextIndex = ( indexAtual + 1) % data.length
-
-            flatListRef.current?.scrollToIndex({
-                index: nextIndex,
-                animated: true,
-            })
-            setIndexAtual(nextIndex)
+            nextSlide()
         },7000)
         return()=> clearInterval(interval)
-    },[indexAtual, data])
+    },[nextSlide, data])
 
 
 
   return (
-    <View   style={{ 
+    <>
+    <View className='relative'   style={{ 
             height: "97%",
             overflow:'hidden',
            
             
         }}>
-        <FlatList 
+        <FlatList  
         style={{ 
             borderRadius: 12, 
             borderWidth: 2,
@@ -91,13 +117,16 @@ export default function Carrossel() {
                     }}
                     className='rounded-xl '
                 />
+               
+
             </View>
         )}
         horizontal // deixa flat na horizontal 
         showsHorizontalScrollIndicator={false} //esconder bara de rolagem 
         
         />
-        <View className='flex-row justify-center mt-4'>
+        <View className='flex-row justify-center  p-3'>
+            
             {data.map((_, index) => (
                 <View
                     key={index}
@@ -108,11 +137,26 @@ export default function Carrossel() {
                       }`}
                 />
             ))}
+            
         </View> 
-  
-
+             
 
     </View>
+    <TouchableOpacity 
+                onPress={nextSlide}
+                className='absolute right-2 top-[45%] -translate-y-1/2 bg-black/30 p-2 rounded-full'
+                activeOpacity={0.7}
+            >
+                <SetaDireita size={24} color="#fff" />
+    </TouchableOpacity>
+    <TouchableOpacity 
+                onPress={prevSlide}
+                className='absolute left-2 top-[45%] -translate-y-1/2 bg-black/30 p-2 rounded-full'
+                activeOpacity={0.7}
+            >
+                <SetaEsquerda size={24} color="#fff" />
+    </TouchableOpacity>
+    </>
   )
 }
 
