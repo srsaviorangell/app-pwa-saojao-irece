@@ -1,20 +1,21 @@
 import { View, Text, TouchableOpacity  } from 'react-native';
 import React from 'react';
 import { HomerIcon, ProgramacaoIcon, MapIcon, FavoritoIcon } from './Icons';
-import { Link } from 'expo-router'
+import { Link, usePathname } from 'expo-router'
 import { ThemeContext } from "../theme/ThemeContext";
 import { useContext } from "react";
 
 
-
 export default function NavBottom({ active, setActive }) {
+  
+  const pathname = usePathname();
+
+
   //declaramos e pegamos o tema 
     const { theme } = useContext(ThemeContext);
 
-    const getIconColor = (tabName) => {
+    const isActive = (path) => pathname.includes(path);
 
-    return active === tabName ? "#E85D04" : "#6B7280"; // laranja ou cinza
-  }
 
     
   return (
@@ -25,9 +26,9 @@ export default function NavBottom({ active, setActive }) {
         <Link href="/" asChild>
           <TouchableOpacity className="flex-1 flex items-center justify-center transition-all" onPress={() => setActive("home")} >
 
-              <HomerIcon color={getIconColor("home")} />
+              <HomerIcon color={pathname === "/" ? "#E85D04" : "#6B7280"} />
 
-              <Text className={active   === "home"
+              <Text className={  pathname === "/"
         ? "text-[#E85D04] text-xs mt-1"
         : "text-gray-500 text-xs mt-1  font-semibold"} >Inicio  </Text>
 
@@ -41,9 +42,13 @@ export default function NavBottom({ active, setActive }) {
 
           <TouchableOpacity className="flex-1 flex items-center justify-center transition-all" onPress={() => setActive("Progamação")}>
 
-              <ProgramacaoIcon color={getIconColor("Progamação")} />
+              <ProgramacaoIcon color={
+              isActive('/pages/programacao')
+                ? "#E85D04"
+                : "#6B7280"
+            } />
 
-              <Text  className={ active   === "Progamação"
+              <Text  className={ isActive('/pages/programacao')
         ? "text-[#E85D04] text-xs mt-1"
         : "text-gray-500 text-xs mt-1  font-semibold "} >Progamação  </Text>
 
@@ -57,9 +62,11 @@ export default function NavBottom({ active, setActive }) {
 
           <TouchableOpacity className="flex-1 flex items-center justify-center transition-all" onPress={() => setActive("Mapa")}>
 
-              <MapIcon color={getIconColor("Mapa")} />
+              <MapIcon color={isActive('/pages/maps')
+                ? "#E85D04"
+                : "#6B7280"} />
 
-              <Text  className={active   === "Mapa"
+              <Text  className={isActive('/pages/maps')
         ? "text-[#E85D04] text-xs mt-1"
         : "text-gray-500 text-xs mt-1"} >Mapa </Text>
 
@@ -73,9 +80,12 @@ export default function NavBottom({ active, setActive }) {
         
           <TouchableOpacity className="flex-1 flex items-center justify-center transition-all" onPress={() => setActive("Favoritos")}  >
 
-              <FavoritoIcon color={getIconColor("Favoritos")} />
+              <FavoritoIcon color={isActive('/pages/favoritos')
+                ? "#E85D04"
+                : "#6B7280"
+              } />
 
-              <Text  className={active  === "Favoritos"
+              <Text  className={isActive('/pages/favoritos')
         ? "text-[#E85D04] text-xs mt-1"
         : "text-gray-500 text-xs mt-1"}>Favoritos
               </Text>

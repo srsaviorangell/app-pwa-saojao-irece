@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { View, ViewProps } from 'react-native';
+import { Pressable } from 'react-native'
 
 interface CardProps extends ViewProps {
   children: ReactNode;
@@ -7,10 +8,13 @@ interface CardProps extends ViewProps {
   
 }
 
-export default function Cardss({ children, className, style }: CardProps) {
+export default function Cardss({ children, className, style, ...rest
+}: CardProps) {
   return (
-    <View className={`${className || ''}`} style={style}>
+    <Pressable
+ className={`${className || ''}`} style={style}  {...rest}>
       {children} 
-    </View>
+    </Pressable>
+
   );
 }

@@ -144,15 +144,15 @@ export default function Carrossel() {
     </View>
     <TouchableOpacity 
                 onPress={nextSlide}
-                className='absolute right-2 top-[45%] -translate-y-1/2 bg-black/30 p-2 rounded-full'
-                activeOpacity={0.7}
+                className='absolute right-2 top-[45%] -translate-y-1/2 bg-black/20 p-2 rounded-full'
+                activeOpacity={0.5}
             >
                 <SetaDireita size={24} color="#fff" />
     </TouchableOpacity>
     <TouchableOpacity 
                 onPress={prevSlide}
-                className='absolute left-2 top-[45%] -translate-y-1/2 bg-black/30 p-2 rounded-full'
-                activeOpacity={0.7}
+                className='absolute left-2 top-[45%] -translate-y-1/2 bg-black/20 p-2 rounded-full'
+                activeOpacity={0.5}
             >
                 <SetaEsquerda size={24} color="#fff" />
     </TouchableOpacity>
