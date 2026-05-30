@@ -7,12 +7,14 @@ import NavBottom from "../src/components/NavBottom";
 import "../src/styles/global.css";
 import { ThemeProvider, ThemeContext } from "../src/theme/ThemeContext";
 import { useContext } from "react";
-
+import { EventProvider } from "../src/conext/EventContext";
 
 export default function Layout() {
   return (
     <ThemeProvider>
-      <LayoutContent />
+      <EventProvider>
+        <LayoutContent />
+      </EventProvider>
     </ThemeProvider>
   );
 }

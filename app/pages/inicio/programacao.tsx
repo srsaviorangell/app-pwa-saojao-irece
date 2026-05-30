@@ -4,8 +4,7 @@ import { ThemeContext } from '../../../src/theme/ThemeContext';
 import { Link } from 'expo-router'
 import { buscarPalcoPrincipal, buscarZeBigode, requisicaoProgamacaoPorPalco } from '../../../src/requisicao/listaProgamacao';
 import type { Evento } from '../../../src/requisicao/listaProgamacao';
-
-
+import { EventContext } from '../../../src/conext/EventContext';
 
 
 
@@ -14,9 +13,11 @@ const ProgramacaoContext = createContext({});
 
 
   export default function Programacao() {
+
+  const { setEventos } = useContext(EventContext);
+
   const { dark, theme } = useContext(ThemeContext)
   
-  const [eventos, setEventos] = useState<Evento[]>([]);
   const [carregandoPalco, setCarregandoPalco] = useState<string | null>(null);
   
 
@@ -25,13 +26,18 @@ const handlePressPalcoPrincipal = async () => {
 
   try {
     const dados = await buscarPalcoPrincipal();
+    console.log("📦 Dados recebidos:", dados);
 
     setEventos(dados);
 
   } catch (error) {
+        console.log("❌ Erro na requisição:", error);
+
     console.log(error);
   } finally {
     setCarregandoPalco(null);
+        console.log("🏁 Finalizou processo do palco principal");
+
   }
 };
 
@@ -40,13 +46,18 @@ const handlePressPalcoZeBigode = async () => {
 
   try {
     const dados = await buscarZeBigode();
+    console.log("📦 Dados recebidos:", dados);
 
     setEventos(dados);
 
   } catch (error) {
     console.log(error);
+            console.log("❌ Erro na requisição:", error);
+
   } finally {
     setCarregandoPalco(null);
+            console.log("🏁 Finalizou processo do palco ze bigode");
+
   }
 };
   
