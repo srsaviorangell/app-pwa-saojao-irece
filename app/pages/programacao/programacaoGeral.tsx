@@ -6,7 +6,7 @@ import AtracoesPorPalco from './AtracoesPorPalco'
 
 export default function ProgamacaoGeral() {
   return (
-    <View style={{flex: 1}}>
+    <View className=" relative" style={{flex: 1}}>
       <View className=" justify-center items-center">
         <View className=' w-full h-[30.5%] flex justify-center items-center'>
           <Programacao />        
@@ -14,7 +14,7 @@ export default function ProgamacaoGeral() {
         <View className=' m-8 w-[98%] flex justify-center '>
           <SelecionarData />
         </View>
-        <View className=' justify-center items-center w-[93%] h-full border   '>
+        <View className='absolute flex justify-center  w-full top-[73%] h-[35rem]  '>
           <AtracoesPorPalco />
       </View>
         

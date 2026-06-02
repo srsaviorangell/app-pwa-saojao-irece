@@ -5,6 +5,7 @@ import { Link } from 'expo-router'
 import { buscarPalcoPrincipal, buscarZeBigode, requisicaoProgamacaoPorPalco } from '../../../src/requisicao/listaProgamacao';
 import type { Evento } from '../../../src/requisicao/listaProgamacao';
 import { EventContext } from '../../../src/conext/EventContext';
+import { getStyles } from "../../../src/styles/style";
 
 
 
@@ -17,6 +18,8 @@ const ProgramacaoContext = createContext({});
   const { setEventos } = useContext(EventContext);
 
   const { dark, theme } = useContext(ThemeContext)
+  
+  const styles = getStyles(theme, dark)
   
   const [carregandoPalco, setCarregandoPalco] = useState<string | null>(null);
   
@@ -63,15 +66,12 @@ const handlePressPalcoZeBigode = async () => {
   
   
  return (
-   <View className=' flex flex-row h-full w-full gap-2  justify-center  '>
+   <View className=' flex flex-row h-full w-full gap-2  justify-center  ' style={[styles.cardGereis]}>
         
         <Link href="/pages/programacao/programacaoGeral" asChild>
         
-          <Pressable id='palcoPrincipal' className='border  w-[45%] h-full flex  items-center rounded-xl'
-            style={{backgroundColor: theme.colors.cards.palcoPrincipal,
-                    borderWidth: 2,
-                    borderColor: dark ? 'rgba(255,255,255,0.4)':'rgba(0,0,0,0.5)',
-            }}
+          <Pressable id='palcoPrincipal' className='  w-[45%] h-full flex  items-center rounded-xl'
+            style={{backgroundColor: theme.colors.cards.palcoPrincipal}}
           onPress={() => handlePressPalcoPrincipal() }
 
 
@@ -94,10 +94,7 @@ const handlePressPalcoZeBigode = async () => {
 
           <Pressable id='barracaoZeBigode' className='relative w-[45%] h-full flex items-center rounded-xl '
           
-          style={{backgroundColor: theme.colors.cards.zeBigode2,
-            borderWidth: 2,
-            borderColor: dark ? 'rgba(255,255,255,0.3)':'rgba(0,0,0,0.5)',
-            }}
+          style={{backgroundColor: theme.colors.cards.zeBigode2 }}
             onPress={()=> handlePressPalcoZeBigode()}
             >
             <Image source= {require("../../../assets/images/zebarraca-semfundo.png")}
@@ -109,7 +106,7 @@ const handlePressPalcoZeBigode = async () => {
               
             }}
 
-            >Barração Zé Bigode</Text>
+            >Circuito Zé Bigode</Text>
           </Pressable>
           
         </Link>
